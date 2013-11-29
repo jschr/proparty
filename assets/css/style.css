@@ -144,22 +144,6 @@ section {
   margin-top: 0;
 }
 
-.jumbotron .btn {
-  color: rgba(196,77,88, 1.0);
-  border: 2px solid rgba(196,77,88, 0.4);
-}
-
-.jumbotron .btn:hover {
-  border-color: rgba(196,77,88, 0.7);
-  background-color: rgba(196,77,88, 0.7);
-  color: #f8f8f8;
-}
-
-.jumbotron .btn:active {
-  border-color: rgba(196,77,88, 1.0);
-  background-color: rgba(196,77,88, 1.0);
-}
-
 .demo-container {
   display: none;
   position: fixed;
