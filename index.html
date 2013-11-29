@@ -1,0 +1,210 @@
+<!DOCTYPE HTML>
+<html>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>proparty.js</title>
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/prettify.css" rel="stylesheet">
+  <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic' rel='stylesheet' type='text/css'>
+  <body>
+    <!-- <div class="example">pp</div> -->
+    <div class="demo-container">
+      <div class="demo demo-one">PP</div>      
+      <div class="demo demo-two">PP</div>      
+      <div class="demo-controls">
+        <button class="btn toggle" data-toggle="pause">Pause</button>
+        <button class="btn btn-danger stop">Stop</button>
+        <button class="btn btn-inverse destroy">Destroy</button>
+        <p class="demo-text"></p>
+      </div>
+      </div>
+    </div>
+    </div>
+    <div class="container">
+      <div class="jumbotron">
+        <h1>
+          <span class="char1">p</span><span class="char2">r</span><span class="char3">o</span><span class="char4">p</span><span class="char5">a</span><span class="char6">r</span><span class="char7">t</span><span class="char8">y</span>.js
+        </h1>
+        <p>
+          Take control over your CSS3 transitions.
+        </p>
+        <p>
+          <a href="#" class="btn">Download</a>
+      </div>
+      
+      <section id="the-basics">
+        <h2><a href="#the-basics">The Basics</a></h2>
+        <p>Set a transition using the <code>set</code> method and apply it by calling <code>start</code>. You can use <code>.setWithVendor</code> to automatically include the right vendor prefix.
+        <pre class="prettyprint">pp('.example')
+  .set('top', '80%')
+  .setWithVendor('border-radius', '100px')
+  .start();</pre>
+        <button type="button" class="btn play" data-play="basic">Play</button>
+      </section>
+      
+      <section id="multiple-values">
+        <h2><a href="#multiple-values">Multiple Values</a></h2>
+        <p>Animate between multiple values of a single property by passing an <em>array</em>. The arrays can be of varied length between properties.</p>
+        <pre class="prettyprint">pp('.example')
+  .set('top', ['80%', '60%'])
+  .set('left', ['80%', '20%', '%50'])
+  .start();</pre>
+        <button type="button" class="btn play" data-play="multi">Play</button>
+      </section>
+
+      <section id="cycle">
+        <h2><a href="#cycle">Cycle</a></h2>
+        <p>Loop the transition by setting <code>cycle</code> in the configuration object or by calling <code>.setSettings({ cycle: &lt;num&gt;</code>. The cycle poperty can set to <code>true</code> to loop indefinitely or to an <em>integer</em> to set the number of cycles to run. A single cycle is <strong>one</strong> interation of a transition.</p>
+        <pre class="prettyprint">pp('.example', { cycle: 7 })
+  .set('top', ['80%', '60%', '%20', '40%'])
+  .set('left', ['80%', '20%', '%50'])
+  .start();</pre>
+        <button type="button" class="btn play" data-play="cycle">Play</button>
+      </section>
+
+      <section id="duration-delay">
+        <h2><a href="#duration-delay">Duration/Delay</a></h2>
+        <p>Change the timing or delay of each transition using the configuration object or it's the<code>.setSettings</code> method. Setting <code>delay</code> will set the delay before the <strong>next</strong> transition starts and <code>initialDelay</code> controls the delay before the <strong>first</strong> transition.</p>
+        <pre class="prettyprint">pp('.example')
+  .setSettings({ duration: 1000, delay: 250, initialDelay: 500 })
+  .set('padding', ['40px', '20px'])
+  .set('opacity', ['0.5', '1.0'])
+  .start();</pre>
+        <button type="button" class="btn play" data-play="timing">Play</button>
+      </section>
+
+      <section id="easing">
+        <h2><a href="#easing">Easing</a></h2>
+        <p>Change the transition timing function by setting the <strong>ease</strong> option. Allowed easing values are: <select id="easingSelect"></select></p>
+        <pre id="easingCode" class="prettyprint"></pre>
+        <button type="button" class="btn play" data-play="ease">Play</button>
+      </section>
+
+      <section id="transforms">
+        <h2><a href="#transforms">Transforms</a></h2>
+        <p>Apply transforms using the <code>.transform</code> method.</p>
+        <pre class="prettyprint">pp('.example')
+  .set('top', ['80%', '30%', '50%'])
+  .transform('rotateX', ['180deg', '360deg', '0deg'])
+  .transform('rotateY', ['180deg', '0deg'])
+  .start();</pre>
+        <button type="button" class="btn play" data-play="transforms">Play</button>
+      </section>
+
+      <section id="using-functions">
+        <h2><a href="#using-functions">Using Functions</a></h2>
+        <p>You can pass in a <strong>function</strong> or an <strong>array of functions</strong> to set a property value. If a single function is passed in it will be called for each iteration. You may want to set the number of cycles in the case as the transition will not end.</p> 
+        <pre class="prettyprint">pp('.example')
+  .setCycle(5)
+  .set('top', function () { 
+    return Math.floor((Math.random() * 80) + 1) + '%'; 
+  })
+  .transform('rotateX', [
+    function () { return (this.inc + 1) * 15 + 'deg'; },
+    function () { return (this.inc + 1) * 20 + 'deg'; },
+  ])
+  .start();</pre>
+        <button type="button" class="btn play" data-play="functions">Play</button>
+      </section>
+
+      <section id="addsub">
+        <h2><a href="#addsub">Adding/Subtracting</a></h2>
+        <p>Proparty provides helper functions to <strong>add</strong>, <strong>subtract</strong>, <strong>multiply</strong> and <strong>divide</strong> from the current value of the property. You can easily extend proparty to add you own functions as well. Operations currently work best using <strong>pixels</strong>.</p> 
+        <pre class="prettyprint">pp('.example')
+  .setCycle(5)
+  .set('top', pp.math.subtract('40px'))
+  .set('left', pp.math.add('40px'))
+  .start();</pre>
+        <button type="button" class="btn play" data-play="addsub">Play</button>
+      </section>
+
+      <section id="methods">
+        <h2><a href="#addsub">Methods</a></h2>
+        <p>You can pause and stop transitions using <code>.pause()</code> and  <code>.stop()</code> respectively. Starting after a pause will resume from the current cycle whereas a stop will resume from the first cycle.</p> 
+        <pre class="prettyprint">var ppExample = pp('.example')
+  .setCycle(true)
+  .set('top', ['15%', '85%', '85%', '15%'])
+  .set('left', ['15%', '15%', '85%', '85%'])
+  .set('background-color', function () { 
+    return '#' + (Math.random().toString(16) + '000000').slice(2, 8); 
+  });
+  .start();
+
+
+// pause transitions
+ppExample.pause();
+
+// stop transitions
+ppExample.stop();
+
+// destroy and call any queued up transitions
+ppExample.destroy();</pre>
+        <button type="button" class="btn play" data-play="methods" data-controls="true">Play</button>
+      </section>
+
+      <section id="callbacks">
+        <h2><a href="#callbacks">Callbacks</a></h2>
+        <p>Use <code>.whenStarted</code>, <code>.whenPaused</code> and <code>.whenStopped</code> to register callbacks.</p> 
+        <pre class="prettyprint">pp('.example')
+  .setCycle(6)
+  .transform('skew', ['20deg, 60deg', '-20deg, -60deg', '0deg, 0deg'])
+  .transform('rotateY', ['180deg', '180deg', '0deg'])
+  .whenStarted(function () { $('.text').html('Started!'); })
+  .whenPaused(function () { $('.text').html('Paused!'); })
+  .whenStopped(function () { $('.text').html('Stopped!'); })
+  .start();</pre>
+        <button type="button" class="btn play" data-play="callbacks" data-controls="true">Play</button>
+      </section>
+      
+      <section id="chaining">
+        <h2><a href="#chaining">Chaining</a></h2>
+        <p>Queue up proparty transitions using the <code>.chain</code> method.</p> 
+        <pre class="prettyprint">pp('.example')
+  .set('top', ['20%', '80%'])
+  .set('left', '20%')
+  .chain(function () {
+    return pp('.example-two')
+      .set('top', ['20%', '80%'])
+      .set('left', '80%')
+  });
+  .start();</pre>
+        <button type="button" class="btn play" data-play="chaining" data-multiple="true">Play</button>
+      </section>
+
+      <section id="support">
+        <h2><a href="#support">Supported Browsers</a></h2>
+        <p></p> 
+      </section>
+
+      <section id="roadmap">
+        <h2><a href="#roadmap">Roadmap</a></h2>
+        <p>
+          <ul>
+            <li>Support for CSS3 animations.</li>
+            <li>Allowing mulitple elements to be animated with the same instance.</li>
+            <li>
+              <p style="margin-top: 0">Reduce internal state to allow for branching off of transitions without mutatation. i.e.</p>
+              <pre class="prettyprint">var ppOne = pp('.example').set('left', '20%');
+var ppTwo = ppOne.set('top', ['20%', '80%']); // this will mutate ppOne
+
+ppOne.start();
+ppTwo.start();</pre>
+            </li>
+          </ul>
+        </p> 
+      </section>
+
+      <section id="credit">
+        <h2><a href="#credit">Credits</a></h2>
+        <p>Proparty was inspired by <a href="https://github.com/visionmedia/move.js">move.js</a>, special thanks to the creators for an awesome library!</p> 
+      </section>
+
+    </div>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="assets/js/jquery.fittext.js"></script>
+    <script src="assets/js/prettify.js"></script>
+    <script src="proparty.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>

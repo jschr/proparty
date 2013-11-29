@@ -1,0 +1,220 @@
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: #f5f5f5;
+  font-family: 'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif;
+  font-size: 14px;
+  color: #033649;
+  line-height: 1.5;
+  font-weight: 200;
+  -webkit-backface-visibility: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px 0;
+  font-weight: 200;
+  font-family: 'Roboto', 'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif;
+  letter-spacing: 1px;
+}
+
+h2 {
+  font-size: 1.5em;
+  color: #C44D58;
+} 
+
+a {
+  text-decoration: none;
+  color: #4ECDC4;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+h2 a {
+  color: inherit;
+}
+
+p {
+  margin-bottom: 10px;
+}
+
+section {
+  margin-bottom: 40px;
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+  max-width: 940px;
+  margin-right: auto;
+  margin-left: auto;
+  /*-webkit-filter: blur(0px); */
+  margin-bottom: 20px;
+  padding: 0 20px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 6px 24px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.428571429;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  background-color: transparent;
+  color: rgba(78,205,196, 1.0);
+  border: 2px solid rgba(78,205,196, 0.4);
+  border-radius: 4px;
+  letter-spacing: 1px;
+  text-decoration: none;
+  outline: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  -webkit-transition: all 0.35s ease-out;
+     -moz-transition: all 0.35s ease-out;
+       -o-transition: all 0.35s ease-out;
+          transition: all 0.35s ease-out;
+}
+
+.btn:hover {
+  text-decoration: none;
+  border-color: rgba(78,205,196, 0.7);
+  background-color: rgba(78,205,196, 0.7);
+  color: #f8f8f8;
+}
+
+.btn:active {
+  border-color: rgba(78,205,196, 1.0);
+  background-color: rgba(78,205,196, 1.0);
+}
+
+
+.btn-danger {
+  color: rgba(196,77,88, 1.0);
+  border: 2px solid rgba(196,77,88, 0.4);
+}
+
+.btn-danger:hover {
+  border-color: rgba(196,77,88, 0.7);
+  background-color: rgba(196,77,88, 0.7);
+}
+
+.btn-danger:active {
+  border-color: rgba(196,77,88, 1.0);
+  background-color: rgba(196,77,88, 1.0);
+}
+
+.btn-inverse {
+  color: rgba(85,98,112, 1.0);
+  border: 2px solid rgba(85,98,112, 0.4);
+}
+
+.btn-inverse:hover {
+  border-color: rgba(85,98,112, 0.7);
+  background-color: rgba(85,98,112, 0.7);
+}
+
+.btn-inverse:active {
+  border-color: rgba(85,98,112, 1.0);
+  background-color: rgba(85,98,112, 1.0);
+}
+
+.jumbotron {
+  position: relative;
+  padding: 3em 0;
+  text-align: center;
+}
+
+.jumbotron h1 {
+  color: #4ECDC4;
+  font-size: 8em;
+  letter-spacing: 0.1em;
+  margin-top: 0;
+}
+
+.jumbotron .btn {
+  color: rgba(196,77,88, 1.0);
+  border: 2px solid rgba(196,77,88, 0.4);
+}
+
+.jumbotron .btn:hover {
+  border-color: rgba(196,77,88, 0.7);
+  background-color: rgba(196,77,88, 0.7);
+  color: #f8f8f8;
+}
+
+.jumbotron .btn:active {
+  border-color: rgba(196,77,88, 1.0);
+  background-color: rgba(196,77,88, 1.0);
+}
+
+.demo-container {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 100;
+  opacity: 0;
+  background-color: rgba(255, 255, 255, 0.8);  
+  font-family: 'Roboto', 'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif;
+}
+
+.demo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-top: -30px;
+  margin-left: -30px;
+  color: #f2f2f2;
+  border-radius: 6px;
+  padding: 16px 18px;
+  font-size: 2em;
+  font-weight: 200;
+}
+
+.demo-one {
+  background-color: rgba(199,244,100, 1.0);
+}
+
+.multiple .demo-one {
+  left: 65%;
+}
+
+.demo-two {
+  display: none;
+  background-color: rgba(255,107,107, 1.0);
+}
+
+.multiple .demo-two {
+  display: block;
+  left: 35%;
+}
+
+.demo-controls {
+  position: absolute;
+  padding: 4px;
+  top: 65%;
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
+}
+
+.demo-text {
+  margin-top: 8px;
+  text-align: center;
+  font-size: 120%;
+}
