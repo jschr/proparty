@@ -140,7 +140,7 @@
 
     setProperty: function (prop, value) {
       if (value || value === 0) {
-        this.element.style.setProperty(prop, value, '');        
+        this.element.style.setProperty(prop, ''+value, '');        
       } else {
         this.element.style.removeProperty(prop);
       }
