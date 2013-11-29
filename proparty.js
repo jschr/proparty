@@ -1,5 +1,5 @@
 /*
- * proparty.js
+ * proparty.js v0.1.0
  * http://jschr.github.com/proparty
  * MIT licensed
  *
