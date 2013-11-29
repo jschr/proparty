@@ -135,12 +135,13 @@
 
     setWithVendor: function (prop, value) {
       this.set(prefix.css + prop, value);
+      this.set(prop, value);
       return this;
     },
 
     setProperty: function (prop, value) {
       if (value || value === 0) {
-        this.element.style.setProperty(prop, value, '');        
+        this.element.style.setProperty(prop, ''+value, '');        
       } else {
         this.element.style.removeProperty(prop);
       }
