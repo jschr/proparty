@@ -135,6 +135,7 @@
 
     setWithVendor: function (prop, value) {
       this.set(prefix.css + prop, value);
+      this.set(prop, value);
       return this;
     },
 
