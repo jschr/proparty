@@ -140,16 +140,25 @@
     },
 
     setProperty: function (prop, value) {
-      if (value || value === 0) {
-        this.element.style.setProperty(prop, ''+value, '');        
-      } else {
-        this.element.style.removeProperty(prop);
+      // ie9 will throw an error if trying to call setProperty on 
+      // unsupported properties or values. 
+      try {
+        if (value || value === 0) {
+          this.element.style.setProperty(prop, ''+value, '');        
+        } else {
+          this.element.style.removeProperty(prop);
+        }
+      } catch (e) {
+        if (console && console.warn) {
+          console.warn('Proparty tried setting invalid property: ' + prop + ', value:' + value);
+        }  
       }
       return this;
     },
 
     setVendorProperty: function (prop, value) {
       this.setProperty(prefix.css + prop, value);
+      this.setProperty(prop, value);
       return this;
     },
 

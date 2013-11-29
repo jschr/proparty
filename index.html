@@ -30,7 +30,7 @@
           Take control over your CSS3 transitions.
         </p>
         <p>
-          <a href="https://github.com/jschr/proparty" class="btn">Download</a>
+          <a href="https://github.com/jschr/proparty" class="btn btn-danger">Download</a>
       </div>
       
       <section id="the-basics">
@@ -174,12 +174,14 @@ ppExample.destroy();</pre>
 
       <section id="support">
         <h2><a href="#support">Supported Browsers</a></h2>
-        <p></p> 
+        <p>
+          Proparty supports all modern browsers with CSS transition support as well as IE9.
+        </p> 
       </section>
 
       <section id="dependencies">
         <h2><a href="#dependencies">Dependencies</a></h2>
-        <p></p> 
+        <p><strong>None!</strong> Proparty is compatible with jQuery but does not require it.</p> 
       </section>
 
       <section id="roadmap">
@@ -188,6 +190,7 @@ ppExample.destroy();</pre>
           <ul>
             <li>Support for CSS3 animations.</li>
             <li>Allowing mulitple elements to be animated with the same instance.</li>
+            <li>Forcing hardware acceleration to improve iOS performance.</li>
             <li>
               <p style="margin-top: 0">Reduce internal state to allow for branching off of transitions without mutatation. i.e.</p>
               <pre class="prettyprint">var ppOne = pp('.example').set('left', '20%');
