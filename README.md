@@ -2,7 +2,7 @@
 
 Demos and documentation [here](http://jschr.github.com/proparty/)
 
-Proparty is a small javascript library that makes defining keyframe-like animations a breeze.
+Proparty is a small javascript library that makes defining CSS transitions and animations a breeze.
 
 ##The Basics
 
@@ -56,6 +56,14 @@ pp('.example')
   .set('top', ['80%', '30%', '50%'])
   .transform('rotateX', ['180deg', '360deg', '0deg'])
   .transform('rotateY', ['180deg', '0deg'])
+  .start();
+```
+
+##Animations
+```js
+pp('.example')
+  .setDuration(1000)
+  .animate('twisterInDown')
   .start();
 ```
 

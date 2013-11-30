@@ -27,7 +27,7 @@
           <span class="char1">p</span><span class="char2">r</span><span class="char3">o</span><span class="char4">p</span><span class="char5">a</span><span class="char6">r</span><span class="char7">t</span><span class="char8">y</span>.js
         </h1>
         <p>
-          Take control over your CSS3 transitions.
+          Take control over your CSS3 animations.
         </p>
         <p>
           <a href="https://github.com/jschr/proparty" class="btn btn-danger">Download</a>
@@ -90,6 +90,16 @@
   .transform('rotateY', ['180deg', '0deg'])
   .start();</pre>
         <button type="button" class="btn play" data-play="transforms">Play</button>
+      </section>
+
+      <section id="animations">
+        <h2><a href="#animations">Animations</a></h2>
+        <p>Use the <code>.animate</code> method to set a CSS animation.</p>
+        <pre class="prettyprint">pp('.example')
+  .setDuration(1000)
+  .animate('twisterInDown')
+  .start();</pre>
+        <button type="button" class="btn play" data-play="animations">Play</button>
       </section>
 
       <section id="using-functions">
@@ -188,7 +198,6 @@ ppExample.destroy();</pre>
         <h2><a href="#roadmap">Roadmap</a></h2>
         <p>
           <ul>
-            <li>Support for CSS3 animations.</li>
             <li>Allowing mulitple elements to be animated with the same instance.</li>
             <li>Forcing hardware acceleration to improve iOS performance.</li>
             <li>
