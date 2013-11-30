@@ -130,16 +130,16 @@ $(function () {
       })
       .set('opacity', 1)
       .chain(function () {
-        console.log('chain 1')
+        // console.log('chain 1')
         ppDemo1 = pp('.demo-one');
         ppDemo2 = pp('.demo-two');
         return demos[demo](ppDemo1, $('#easingSelect').val(), ppDemo2)
           .chain(function () {
-            console.log('chain 2')
+            // console.log('chain 2')
             return pp('.demo-container')
               .set('opacity', 0)
               .whenDestroyed(function () {
-                console.log('chain end');
+                // console.log('chain end');
                 $(this.element).hide();
               });
           });

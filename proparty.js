@@ -69,7 +69,7 @@
       var id = this.id(element);
       return ns ? this.store[id][ns] : this.store[id];
     },
-    clear: function (key) {
+    clear: function (element) {
       var id = this.id(element);
       delete this.store[id];
     }
@@ -227,13 +227,12 @@
 
     nextInChain: function () {
       var that = this;
-      console.log(that.element.getAttribute('class'), 'nextInChain', this.next.length);
+
       if (this.next.length) {
         var ppChain = that.next.shift()();
-        console.log(that.element.getAttribute('class'), 'next', ppChain);
+
         ppChain
           .whenDestroyed(function () {
-            console.log(that.element.getAttribute('class'), 'nextlen', ppChain.next.length);
             if (ppChain.next.length) {
               ppChain.nextInChain();
             } else {
@@ -331,8 +330,6 @@
 
      chain: function (fn) {
       this.next.push(fn);
-            console.log(this.element.getAttribute('class'), 'chain', this.next.length);
-
       return this;
     },
 
@@ -341,7 +338,6 @@
     
       this.paused = true;
       this.inc = 0;
-console.log(this.element.getAttribute('class'), 'destroy', this);
       // execute callback before destorying callbacks
       this.executeCallback('destroy');
       
@@ -362,6 +358,7 @@ console.log(this.element.getAttribute('class'), 'destroy', this);
       this.transforms = {};
       this.callbacks = {};
 
+      store.clear(this.element);
       // this.settings = this.setSettings(proparty.defaults);
     }
   };
