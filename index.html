@@ -35,7 +35,7 @@
       
       <section id="the-basics">
         <h2><a href="#the-basics">The Basics</a></h2>
-        <p>Set a transition using the <code>set</code> method and apply it by calling <code>start</code>. You can use <code>.setWithVendor</code> to automatically include the right vendor prefix.
+        <p>Define a transition using the <code>set</code> method and apply it by calling <code>start</code>. You can use <code>.setWithVendor</code> to automatically include the right vendor prefix.
         <pre class="prettyprint">pp('.example')
   .set('top', '80%')
   .setWithVendor('border-radius', '100px')
@@ -45,17 +45,17 @@
       
       <section id="multiple-values">
         <h2><a href="#multiple-values">Multiple Values</a></h2>
-        <p>Animate between multiple values of a single property by passing an <em>array</em>. The arrays can be of varied length between properties.</p>
+        <p>Animate between multiple values of a single property by passing an <em>array</em>.</p>
         <pre class="prettyprint">pp('.example')
   .set('top', ['80%', '60%'])
-  .set('left', ['80%', '20%', '%50'])
+  .set('left', ['80%', '20%', '50%'])
   .start();</pre>
         <button type="button" class="btn play" data-play="multi">Play</button>
       </section>
 
       <section id="cycle">
         <h2><a href="#cycle">Cycle</a></h2>
-        <p>Loop the transition by setting <code>cycle</code> in the configuration object or by calling <code>.setSettings({ cycle: &lt;num&gt;</code>. The cycle poperty can set to <code>true</code> to loop indefinitely or to an <em>integer</em> to set the number of cycles to run. A single cycle is <strong>one</strong> interation of a transition.</p>
+        <p>Loop the transition by setting <code>cycle</code> in the configuration object or by calling <code>.setSettings({ cycle: &lt;num&gt; })</code>. Cycle can set to <code>true</code> to loop indefinitely or to an <em>integer</em> to set the number of cycles to run. A single cycle is <strong>one</strong> interation of a transition.</p>
         <pre class="prettyprint">pp('.example', { cycle: 7 })
   .set('top', ['80%', '60%', '%20', '40%'])
   .set('left', ['80%', '20%', '%50'])
@@ -65,7 +65,7 @@
 
       <section id="duration-delay">
         <h2><a href="#duration-delay">Duration/Delay</a></h2>
-        <p>Change the timing or delay of each transition using the configuration object or it's the<code>.setSettings</code> method. Setting <code>delay</code> will set the delay before the <strong>next</strong> transition starts and <code>initialDelay</code> controls the delay before the <strong>first</strong> transition.</p>
+        <p>Change the timing or delay of each transition using the configuration object or by using the<code>.setSettings</code> method. Setting <code>delay</code> will set the delay before the <strong>next</strong> transition starts and <code>initialDelay</code> controls the delay before the <strong>first</strong> transition.</p>
         <pre class="prettyprint">pp('.example')
   .setSettings({ duration: 1000, delay: 250, initialDelay: 500 })
   .set('padding', ['40px', '20px'])
@@ -76,7 +76,7 @@
 
       <section id="easing">
         <h2><a href="#easing">Easing</a></h2>
-        <p>Change the transition timing function by setting the <strong>ease</strong> option. Allowed easing values are: <select id="easingSelect"></select></p>
+        <p>Change the transition timing function by setting the <code>ease</code> option. Allowed easing values are: <select id="easingSelect"></select></p>
         <pre id="easingCode" class="prettyprint"></pre>
         <button type="button" class="btn play" data-play="ease">Play</button>
       </section>
@@ -94,15 +94,15 @@
 
       <section id="using-functions">
         <h2><a href="#using-functions">Using Functions</a></h2>
-        <p>You can pass in a <strong>function</strong> or an <strong>array of functions</strong> to set a property value. If a single function is passed in it will be called for each iteration. You may want to set the number of cycles in the case as the transition will not end.</p> 
+        <p>You can pass in a <strong>function</strong> or an <strong>array of functions</strong> to set a property's value. If a single function is passed in it will be called for each iteration. You may want to set the number of cycles or the transition will never finish.</p> 
         <pre class="prettyprint">pp('.example')
   .setCycle(5)
   .set('top', function () { 
     return Math.floor((Math.random() * 80) + 1) + '%'; 
   })
-  .transform('rotateX', [
-    function () { return (this.inc + 1) * 15 + 'deg'; },
-    function () { return (this.inc + 1) * 20 + 'deg'; },
+  .transform('rotate', [
+    function () { return (this.inc + 1) * 45 + 'deg'; },
+    function () { return (this.inc + 1) * 90 + 'deg'; }
   ])
   .start();</pre>
         <button type="button" class="btn play" data-play="functions">Play</button>
@@ -110,7 +110,7 @@
 
       <section id="addsub">
         <h2><a href="#addsub">Adding/Subtracting</a></h2>
-        <p>Proparty provides helper functions to <strong>add</strong>, <strong>subtract</strong>, <strong>multiply</strong> and <strong>divide</strong> from the current value of the property. You can easily extend proparty to add you own functions as well. Operations currently work best using <strong>pixels</strong>.</p> 
+        <p>Proparty provides helper functions to <strong>add</strong>, <strong>subtract</strong>, <strong>multiply</strong> and <strong>divide</strong> from the current value of the property. You can easily extend proparty to add your own functions as well. Operations currently work best using <strong>pixels</strong>.</p> 
         <pre class="prettyprint">pp('.example')
   .setCycle(5)
   .set('top', pp.math.subtract('40px'))
@@ -121,7 +121,7 @@
 
       <section id="methods">
         <h2><a href="#addsub">Methods</a></h2>
-        <p>You can pause and stop transitions using <code>.pause()</code> and  <code>.stop()</code> respectively. Starting after a pause will resume from the current cycle whereas a stop will resume from the first cycle.</p> 
+        <p>You can pause and stop transitions using <code>.pause</code> and  <code>.stop</code> respectively. Starting after a pause will resume from the current cycle whereas a stop will resume from the first cycle.</p> 
         <pre class="prettyprint">var ppExample = pp('.example')
   .setCycle(true)
   .set('top', ['15%', '85%', '85%', '15%'])
@@ -159,7 +159,7 @@ ppExample.destroy();</pre>
       
       <section id="chaining">
         <h2><a href="#chaining">Chaining</a></h2>
-        <p>Queue up proparty transitions using the <code>.chain</code> method.</p> 
+        <p>Queue up transitions using the <code>.chain</code> method.</p> 
         <pre class="prettyprint">pp('.example')
   .set('top', ['20%', '80%'])
   .set('left', '20%')
@@ -175,7 +175,7 @@ ppExample.destroy();</pre>
       <section id="support">
         <h2><a href="#support">Supported Browsers</a></h2>
         <p>
-          Proparty supports all modern browsers with CSS transition support as well as IE9.
+          Proparty supports all <strong>modern browsers</strong> with CSS transition support. Proparty also works in IE9 even though transition are not supported.
         </p> 
       </section>
 

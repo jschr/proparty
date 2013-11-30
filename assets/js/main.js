@@ -68,7 +68,7 @@ $(function () {
         })
         .transform('rotate', [
           function () { return (this.inc + 1) * 45 + 'deg'; },
-          function () { return (this.inc + 1) * 90 + 'deg'; },
+          function () { return (this.inc + 1) * 90 + 'deg'; }
         ]);
     },
     addsub: function (demo) {
