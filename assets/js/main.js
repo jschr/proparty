@@ -4,11 +4,11 @@ $(function () {
   $('.jumbotron h1').fitText(0.8, { minFontSize: 50, maxFontSize: 110 });
 
   // title
-  // for (var i = 1; i <= 8; i++) {
-  //   pp('.char' + i, { duration: 10000, initialDelay: (400 * i), cycle: true, ease: 'out' })
-  //   .set('color', [ '#C7F464', '#FF6B6B', '#C44D58' ])
-  //   .start();
-  // }
+  for (var i = 1; i <= 8; i++) {
+    pp('.char' + i, { duration: 10000, initialDelay: (400 * i), cycle: true, ease: 'out' })
+    .set('color', [ '#C7F464', '#FF6B6B', '#C44D58' ])
+    .start();
+  }
 
   // easing types
   var types = ['in', 'out', 'in-out', 'linear', 'snap', 'ease-in-quad', 'ease-in-cubic', 'ease-in-quart', 'ease-in-quint', 'ease-in-sine', 'ease-in-expo', 'ease-in-circ', 'ease-in-back', 'ease-out-quart', 'ease-out-quint', 'ease-out-sine', 'ease-out-expo', 'ease-out-circ', 'ease-out-back', 'ease-out-quad', 'ease-out-cubic', 'ease-in-out-quart', 'ease-in-out-quint', 'ease-in-out-sine', 'ease-in-out-expo', 'ease-in-out-circ', 'ease-in-out-back'];
