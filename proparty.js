@@ -17,6 +17,7 @@
 
   function mapObject (obj, fn) {
     var o = {};
+    fn = fn || function (key) { return obj[key]; };
     Object.keys(obj).forEach(function (key) {
       var result = fn(key, obj[key]);
       if (typeof result !== 'undefined') o[key] = result;
@@ -58,19 +59,34 @@
       }
       return id
     },
-    set: function (element, ns, value) {
+    set: function (element, ns, key, value) {
       var id = this.id(element);
       if (!this.store[id]) {
         this.store[id] = {};
       }
-      this.store[id][ns] = value;
+      if (!this.store[id][ns]) {
+        this.store[id][ns] = {};
+      }
+      this.store[id][ns][key] = value;
     },
-    get: function (element, ns) {
+    get: function (element, ns, key) {
       var id = this.id(element);
-      return ns ? this.store[id][ns] : this.store[id];
+      var data = this.store[id];
+      if (ns) {
+        data = data[ns];
+        if (key) {
+          data = data[key];
+        }
+      } else if (key) {
+        data = mapObject(data, function (k, v) {
+          return v[key];
+        });
+      }
+      return data;
     },
     clear: function (element) {
       var id = this.id(element);
+      element.removeAttribute('data-propartyid');
       delete this.store[id];
     }
   };    
@@ -91,6 +107,7 @@
       this.element = element; 
       this.properties = {};
       this.transforms = {};
+      this.animations = {};
       this.callbacks = {};
       this.settings = {};
       this.next = [];
@@ -133,6 +150,11 @@
       return this;
     },
 
+    animate: function (name) {
+      this.animations[name] = true;
+      return this;
+    },
+
     setWithVendor: function (prop, value) {
       this.set(prefix.css + prop, value);
       this.set(prop, value);
@@ -168,6 +190,10 @@
 
     getTransform: function (prop, value) {
       return prop + '(' + (typeof value === 'string' ? value : value.join(',')) + ')';
+    },
+
+    getAnimation: function (name) {
+      return name + ' ' + (this.settings.duration / 1000 + 's') + ' ' + proparty.ease[this.settings.ease];
     },
 
     getValue: function (key, value) {
@@ -252,14 +278,21 @@
       this.paused = false;
 
       var run = function () {
-        var transformsObj = mapObject(that.transforms, that.getValue.bind(that));
         var propsObj = mapObject(that.properties, that.getValue.bind(that));
+        var transformsObj = mapObject(that.transforms, that.getValue.bind(that));
+        var animationsObj = mapObject(that.animations, that.getValue.bind(that));
 
-        if (!Object.keys(propsObj).length && !Object.keys(transformsObj).length) {
+        // proparty is done when there are no more transitions, transforms or animations
+        if (!Object.keys(propsObj).length && !Object.keys(transformsObj).length && !Object.keys(animationsObj).length) {
           that.stop();
           that.nextInChain();
           return;
         }
+
+        var animations = [];
+        forEachObject(animationsObj, function (key, value) {
+          animations.push(that.getAnimation(key, value));
+        });
 
         var transforms = [];
         forEachObject(transformsObj, function (key, value) {
@@ -275,18 +308,23 @@
           transitions.push(that.getTransition(prefix.css + 'transform'));
         }
 
-        store.set(that.element, that.uuid, transitions);
+        store.set(that.element, that.uuid, 'transitions', transitions);
+        store.set(that.element, that.uuid, 'animations', animations);
 
         var allTransitions = [];
-        forEachObject(store.get(that.element), function (key, value) {
+        forEachObject(store.get(that.element, null, 'transitions'), function (key, value) {
           Array.prototype.push.apply(allTransitions, value);
         });
 
-        that.setVendorProperty('transform', transforms.join(' '));
+        var allAnimations = [];
+        forEachObject(store.get(that.element, null, 'animations'), function (key, value) {
+          Array.prototype.push.apply(allAnimations, value);
+        });
 
         forEachObject(propsObj, that.setProperty.bind(that));
-
+        that.setVendorProperty('transform', transforms.join(' '));
         that.setVendorProperty('transition', allTransitions.join(','));
+        that.setVendorProperty('animation', allAnimations.join(','));
 
         if (proparty.forceHardwareAcceleration) {
           that.setProperty('-webkit-backface-visibility', 'hidden');
