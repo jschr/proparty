@@ -151,7 +151,7 @@ None! Proparty is compatible with jQuery but does not require it.
 
 ##Credits
 
-Proparty was inspired by move.js, special thanks to the creators for an awesome library!
+Proparty was inspired by [move.js](https://github.com/visionmedia/move.js), special thanks to the creators for an awesome library!
 
 ##License
 
