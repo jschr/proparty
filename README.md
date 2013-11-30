@@ -144,10 +144,10 @@ None! Proparty is compatible with jQuery but does not require it.
 
 ##Roadmap
 
-*Support for CSS3 animations.
-*Allowing mulitple elements to be animated with the same instance.
-*Forcing hardware acceleration to improve iOS performance.
-*Reduce internal state to allow for branching off of transitions without mutatation.
+* Support for CSS3 animations.
+* Allowing mulitple elements to be animated with the same instance.
+* Forcing hardware acceleration to improve iOS performance.
+* Reduce internal state to allow for branching off of transitions without mutatation.
 
 ##Credits
 
