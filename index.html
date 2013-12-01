@@ -57,8 +57,8 @@
         <h2><a href="#cycle">Cycle</a></h2>
         <p>Loop the transition by setting <code>cycle</code> in the configuration object or by calling <code>.setSettings({ cycle: &lt;num&gt; })</code>. Cycle can set to <code>true</code> to loop indefinitely or to an <em>integer</em> to set the number of cycles to run. A single cycle is <strong>one</strong> interation of a transition.</p>
         <pre class="prettyprint">pp('.example', { cycle: 7 })
-  .set('top', ['80%', '60%', '%20', '40%'])
-  .set('left', ['80%', '20%', '%50'])
+  .set('top', ['80%', '60%', '20%', '40%'])
+  .set('left', ['80%', '20%', '50%'])
   .start();</pre>
         <button type="button" class="btn play" data-play="cycle">Play</button>
       </section>
