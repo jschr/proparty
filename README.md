@@ -138,7 +138,7 @@ pp('.example')
     return pp('.example-two')
       .set('top', ['20%', '80%'])
       .set('left', '80%')
-  });
+  })
   .start();
 ```
 
