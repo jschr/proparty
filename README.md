@@ -163,7 +163,7 @@ Proparty was inspired by [move.js](https://github.com/visionmedia/move.js), spec
 
 ##License
 
-Copyright (C) 2012-2013 Jordan Schroter
+Copyright (C) 2014 Jordan Schroter
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
