@@ -1,4 +1,4 @@
-#Propaty.js v0.1.0
+#Proparty.js v0.1.0
 
 Demos and documentation [here](http://jschr.github.com/proparty/)
 
